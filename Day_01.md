@@ -1,0 +1,139 @@
+## Day_01
+
+---
+
+### [CLI 기본 문법]
+
+- touch 파일명: 파일 생성
+- mkdir 디렉토리명: 디렉토리 생성
+- ls : 현재 작업 중인 디렉토리 내부 폴더, 파일 목록 출력
+- cd 위치: 작업 중인 디렉토리 변경
+- start 폴더(파일)명: 폴더(파일) 열기
+- rm 파일명: 파일 삭제(디렉토리는 -r 옵션 추가 사용(rm 디렉토리명 -r 또는 rm -r 디렉토리명))
+- pwd: 현재 작업 중인 디렉토리의 **절대 경로** 출력
+
+---
+
+### [GIT]
+-> 분산 버전 관리 시스템
+
+- 중앙 집중식: 버전은 중앙 서버에 저장되고 중앙 서버에서 파일을 가져와 다시 중앙에 업로드
+- 분산식: 버전을 여러 개의 복제된 저장소에 저장 및 관리
+
+분산 구조의 장점
+
+- 중앙 서버에 의존하지 않고 동시에 다양한 작업 수행 가능(개발자들 간 작업 충돌 감소, 개발 생산성 향상)
+- 중앙 서버의 장애나 손실에 대비하여 백업과 복구가 용이
+- 인터넷이 연결되지 않은 환경에서도 작업을 계속할 수 있음(변경 이력,코드를 로컬 저장소에 기록하고 나중에 중앙 서버와 동기화)
+
+역할
+: 코드의 버전(히스토리) 관리
+: 개발되어 온 과정 파악
+: 이전 버전과의 변경 사항 비교
+-> 코드의 **변경 이력**을 기록하고 **협업**을 원활하게 하는 도구
+
+영역
+: working directory, staging area, repository
+
+- working directory: 실제 작업 중인 파일들이 위치하는 영역
+- staging area: working directory에서 변경된 파일 중 다음 버전에 포함시킬 파일을 선택적으로 추가하거나 제외할 수 있는 중간 준비 영역
+- repository: 버전(**commit**) 이력과 파일들이 영구적으로 저장되는 영역, 모든 버전(**commit**)과 변경 이력이 기록됨
+- commit(**버전**): 변경된 파일들을 저장하는 행위이며, 마치 사진을 찍듯이 기록한다 하여 'snapshot'이라고도 함
+
+---
+
+### [GIT 동작]
+
+- git init: 로컬 저장소 설정(초기화) -> git의 버전 관리를 시작할 디렉토리에서 진행
+
+![image.png](attachment:0388044e-9ddd-40d7-b122-4846da442456:image.png)
+
+→ master가 뜨면 로컬 저장소가 되었다는 뜻
+
+- git add: 변경사항이 있는 파일을 staging area에 추가
+- git commit: staging area에 있는 파일들을 저장소에 기록 -> 해당 시점의 버전을 생성하고 변경 이력을 남기는 것
+
+![image.png](attachment:595b57c8-bc6d-4a6f-af27-870afe656848:image.png)
+
+→ `touch`로 sample.txt 파일 생성
+
+→ 커밋되지 않음 ⇒ 추적되지 않는 파일
+
+![image.png](attachment:f92f291d-356a-4fca-b434-01eafce19f1f:image.png)
+
+![image.png](attachment:7088bc6a-eb08-4b74-abd7-bf4499268a4c:image.png)
+
+→ test.txt 파일 생성
+
+→ sample.txt 파일을 다음 버전 관리에 추가
+
+![image.png](attachment:459ce285-6f49-4b47-8d87-06550bfa4e52:image.png)
+
+→ 커밋된 것은 없음
+
+→ sample.txt는 추가하여 관리할 예정
+
+![image.png](attachment:252c9992-da0d-4945-a124-33eea745bf25:image.png)
+
+→ test.txt도 관리 예정에 추가
+
+→ test.txt는 예정에서 삭제
+
+![image.png](attachment:54519050-8c07-44e4-9cbc-acee2aec90ed:image.png)
+
+→ 변경사항을 기록하기 위해 작성자를 밝혀야 함
+
+⇒ git config —global [user.email](http://user.email) “you@example.com” 또는 git config —global [user.name](http://user.name) “Your name” (현재의 경로에서 신상 정보 세팅하려면 —global 생략!)
+
+![image.png](attachment:52fa2902-a9d1-49ea-b901-6f72546e05f7:image.png)
+
+→ user 정보 밝히고 commit 실행
+
+![image.png](attachment:06e9fd6d-a67f-43e1-9b23-5eb330c2eecb:image.png)
+
+→ 현재까지 작성한 변경 내용 확인(git status는 현재 저장소의 상태 확인)
+
+![image.png](attachment:3c5f09f1-9e92-4007-8f9a-b113602eb68f:image.png)
+
+→ commit 후에 변경사항이 발생하지 않음
+
+![image.png](attachment:b0c4ad8f-6738-4bde-aa1c-cb3cebc6ff35:image.png)
+
+→ commit 준비되지 않은 변경사항이 존재함
+
+![image.png](attachment:fb67eab7-fcb2-42f6-96e0-96c6c9e8ee88:image.png)
+
+→ 현재 경로에 있는 파일 스테이징
+
+→ 변경사항 커밋을 위한 스테이징 완료
+
+![image.png](attachment:92a9a09b-f358-43c6-bb5f-f65e858a228d:image.png)
+
+→ 1개의 변경사항 커밋 완료
+
+![image.png](attachment:a90cf465-bf9e-4b7c-b84f-4ae31cc81d04:image.png)
+
+→ 변경 사항 커밋 내용 조회
+
+![image.png](attachment:1f04be4b-5d56-4916-8938-4466656afcd1:image.png)
+
+### git 사용하기 실습 과정
+
+: 로컬 저장소 초기화 → 파일 생성 후 로컬 저장소 파일 상태 확인 → 파일 staging area에 추가 → 로컬 저장소 파일 상태 확인 → commit 생성하기 → git 사용자 정보 등록 → commit 생성하기 재시도 → commit 목록 확인 → 로컬 저장소의 파일 상태 확인 → 파일에 변경사항 만들고 로컬 저장소의 파일 상태 확인 → 2번째 commit 생성 후 확인
+
+### git 기타 명령어
+
+- `git status` : 현재 로컬 저장소의 파일 상태 보기
+- `git log` : commit history 보기
+- `git log --oneline` : commit 목록 한 줄로 보기
+- `git config --global -l` : git global 설정 정보 보기
+
+### commit 수정하기_ git commit —amend
+
+- commit 메시지 수정
+
+⇒ `git commit --amend` → 아무 키 누르고 메시지 수정 → :wq 엔터
+
+- commit에 빠진 파일이 있을 때
+
+⇒ 빠진 파일  staging → commit 메시지 수정 과정과 동일하게 진행
