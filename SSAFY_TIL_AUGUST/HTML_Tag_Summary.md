@@ -1,5 +1,3 @@
-[toc]
-
 # div, span, rem 정리
 
 ## 1. div 태그
